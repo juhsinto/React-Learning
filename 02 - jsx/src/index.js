@@ -8,15 +8,16 @@ const App = function() {
 	const buttonText = "click me";
 
 	function getText() {
-		return "testing this";
+		const myText = "testing this";
+		document.querySelector("#name").setAttribute("value", myText);
 	}
 
 	return (
 		<div>
 			<label for="name">Enter name: </label>
 			<input id="name" type="text" />
-			<button style={{backgroundColor: 'blue', color: 'white'}}>
-				{getText()}
+			<button onClick={getText} style={{backgroundColor: 'blue', color: 'white'}}>
+				{buttonText}
 			</button>
 		</div>
 	);
