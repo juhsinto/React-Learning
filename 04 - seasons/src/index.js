@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
 import Spinner from './Spinner';
 
+
+// using state, class based components, CSS and lifecycle methods
+
 // const App = props => {
 	
 // 	return (<div> 
