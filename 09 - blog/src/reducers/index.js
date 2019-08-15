@@ -1,5 +1,6 @@
+import postsReducer from './postsReducer';
 import {combineReducers} from 'redux';
 
 export default combineReducers({
-	replaceMe: () => 'placeholder reducer'
+	posts: postsReducer
 });
