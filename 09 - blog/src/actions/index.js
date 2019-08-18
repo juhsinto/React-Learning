@@ -23,15 +23,41 @@ export const fetchPosts = () => async dispatch => {
 };
 
 
-export const fetchUser = (userId) => dispatch => {
-	_fetchUser(userId, dispatch);
-};
-
-
-// _ means private
-const _fetchUser = _.memoize(async (userId, dispatch) => {
+// (4) before memoization
+export const fetchUser = (userId) => async dispatch => {
 	const response = await jsonPlaceholder.get('/users/' + userId);
 	// const resonse = await jsonPlaceholder.get(`/users/${userId}`);
 	dispatch({type: 'FETCH_USER', payload: response.data})
-});
+};
 
+// (5) after memoization
+// export const fetchUser = (userId) => dispatch => {
+// 	_fetchUser(userId, dispatch);
+// };
+
+
+// // _ means private
+// const _fetchUser = _.memoize(async (userId, dispatch) => {
+// 	const response = await jsonPlaceholder.get('/users/' + userId);
+// 	// const resonse = await jsonPlaceholder.get(`/users/${userId}`);
+// 	dispatch({type: 'FETCH_USER', payload: response.data})
+// });
+
+
+export const fetchPostsAndUsers = () => async (dispatch, getState) => {
+	
+	await dispatch(fetchPosts());
+	
+	// will get all the 'userId' keys from the state's posts
+	const userId_array = _.map(getState().posts, 'userId')
+
+	// will dedup, and only keep unique
+	const userIds_array_unique = _.uniq(userId_array);
+
+	userIds_array_unique.forEach(id => dispatch(fetchUser(id)));
+
+	
+	
+
+
+};
