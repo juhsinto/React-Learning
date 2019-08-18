@@ -48,15 +48,20 @@ export const fetchPostsAndUsers = () => async (dispatch, getState) => {
 	
 	await dispatch(fetchPosts());
 	
-	// will get all the 'userId' keys from the state's posts
-	const userId_array = _.map(getState().posts, 'userId')
+	// // will get all the 'userId' keys from the state's posts
+	// const userId_array = _.map(getState().posts, 'userId')
 
-	// will dedup, and only keep unique
-	const userIds_array_unique = _.uniq(userId_array);
+	// // will dedup, and only keep unique
+	// const userIds_array_unique = _.uniq(userId_array);
 
-	userIds_array_unique.forEach(id => dispatch(fetchUser(id)));
+	// userIds_array_unique.forEach(id => dispatch(fetchUser(id)));
 
-	
+	// after refactor using ._chain()
+	const userIds_deduplicated = _.chain(getState().posts)
+									.map('userId')
+									.uniq()
+									.forEach(id => dispatch(fetchUser(id)))
+									.value()
 	
 
 
