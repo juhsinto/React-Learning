@@ -1,16 +1,12 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 const PageOne = () => {
-	return <div> PageOne </div>
+	return (<div> PageOne  <Link to="/pagetwo"> page two </Link> </div>);
 };
 
 const PageTwo = () => {
-	return <div> PageTwo </div>
-};
-
-const PageThree = () => {
-	return <div> PageThree </div>
+	return (<div> PageTwo  <Link to="/"> page one </Link></div> );
 };
 
 const App = () => {
@@ -19,7 +15,6 @@ const App = () => {
 			<div>
 			<Route path="/" exact component={PageOne} />
 			<Route path="/pagetwo"  component={PageTwo} />
-			<Route path="/page3"  component={PageThree} />
 			</div>
 		</BrowserRouter> 
 	</div>);
