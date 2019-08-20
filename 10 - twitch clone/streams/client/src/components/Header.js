@@ -1,4 +1,5 @@
 import React from 'react';
+import GoogleAuth from './GoogleAuth';
 import {Link} from 'react-router-dom';
 // CSS is from semantic ui -> header subsection
 
@@ -10,6 +11,7 @@ const Header = () => {
 				<div className="right menu">
 					<Link to="/" className="item">All Streams</Link>
 					<Link to="/" className="item">Streamer</Link>
+					<GoogleAuth />
 				</div>
 			</div>
 		)
