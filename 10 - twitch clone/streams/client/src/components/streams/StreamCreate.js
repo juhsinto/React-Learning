@@ -4,18 +4,29 @@ import {Field, reduxForm} from 'redux-form';
 
 class StreamCreate extends React.Component {
 
-	renderInput({input, label, meta}) {
+	renderError({error, touched}) {
+		if(touched && error) {
+			return (
+				<div className="ui error message">
+					<div className="header">{error}</div>
+				</div>
+				);
+		}
+	}
+
+	renderInput = ({input, label, meta}) => {
 		// console.log(formProps);
 		// return <input onChange={formProps.input.onChange} 
 		// 			value={formProps.input.value} />
 
-		console.log(meta);
+		// console.log(meta);
+		const classNameWithError = `field ${meta.error && meta.touched ? 'error' : ''}`;
 
 		return (
-			<div className="field">
+			<div className={classNameWithError} >
 				<label> {label} </label>
-				<input {...input} />
-				<div>{meta.error}</div>
+				<input autoComplete="off" {...input} />
+				{this.renderError(meta)}
 			</div>);
 	}
 
@@ -28,7 +39,7 @@ class StreamCreate extends React.Component {
 	render() { 
 		
 		return (
-			<form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
+			<form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
 				<Field name="title" label="enter title" component={this.renderInput}/>
 				<Field name="description" label="enter description" component={this.renderInput}/>
 				<button className="ui button primary"> Submit </button>
@@ -42,12 +53,12 @@ const validateValues = (formValues) => {
 
 	// if title wasnt entered
 	if (!formValues.title) {
-		errors.title = 'the title wasnt enetered';
+		errors.title = 'the title wasnt Entered';
 	}
 
 	// if description wasnt entered
 	if (!formValues.description) {
-		errors.description = 'the title wasnt enetered';
+		errors.description = 'the desc wasnt entered';
 	}
 
 	return errors;
