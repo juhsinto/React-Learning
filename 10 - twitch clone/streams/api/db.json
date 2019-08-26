@@ -4,6 +4,16 @@
       "title": "test stream",
       "description": "test stream only",
       "id": 1
+    },
+    {
+      "title": "other stream",
+      "description": "here's some stream",
+      "id": 2
+    },
+    {
+      "title": "test",
+      "description": "test description 2",
+      "id": 3
     }
   ]
 }
