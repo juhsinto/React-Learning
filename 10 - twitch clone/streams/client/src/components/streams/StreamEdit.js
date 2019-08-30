@@ -3,6 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {fetchStream, editStream} from '../../actions';
 import StreamForm from './StreamForm';
+import history from '../../history';
 // const StreamEdit = (props) => {
 // 	console.log(props);
 // 	return <div>StreamEdit</div>;
@@ -15,7 +16,8 @@ class StreamEdit extends React.Component {
 	}
 
 	onSubmit = (formValues) => {
-		console.log(formValues);
+		this.props.editStream(this.props.match.params.id, formValues);
+		history.push('/');
 	};
 
 	render() {
