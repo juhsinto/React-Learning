@@ -5,6 +5,7 @@ import {
 	EDIT_STREAM
 } from '../actions/types';
 import streams from '../apis/streams.js';
+import history from '../history';
 
 export const signIn = (userId) => {
 	return {
@@ -24,6 +25,8 @@ export const createStream = (formValues) => {
 		const {userId} = getState().auth;
 		const response = await streams.post('/streams', {...formValues, userId});
 		dispatch({type: CREATE_STREAM, payload: response.data});
+		// Programmatic root route
+		history.push('/');
 	}
 };
 
