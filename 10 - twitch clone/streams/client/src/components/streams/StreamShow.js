@@ -27,6 +27,11 @@ class StreamShow extends React.Component {
 		this.buildPlayer();
 	}
 
+	// when the user navigates away from the component
+	componentWillUnmount() {
+		this.player.destroy();
+	}
+
 	buildPlayer() {
 		if(this.player || !this.props.stream) {
 			return;
