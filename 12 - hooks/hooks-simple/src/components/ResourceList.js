@@ -19,12 +19,19 @@ const ResourceList = ({resource}) => {
 	// 		this.setState({resources: response.data});
 	// 	}
 	// }
+
+	// when using useEffect, make sure to pass the empty array, else it will behave recursively
 	useEffect(() => {
 		fetchResource(resource);
 	}, [resource])
 
 	
-	return <div>{resources.length}</div>
+	return (
+		<ul>
+			{resources.map(record => (
+				<li key={record.id}> {record.title}</li>
+			))}
+		</ul>);
 	
 }
 
